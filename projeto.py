@@ -75,7 +75,7 @@ def cadastro():
     tela.lineEdit_12.setText('')
 
     cadastro = banco.cursor()
-    cadastro.execute("SELECT * FROM placas WHERE bloco = " +
+    cadastro.execute("SELECT * FROM placas WHERE placa = " + "'" + str(cons) + "'" + " " + "AND bloco = " +
                      str(bloco) + " " + "AND apartamento = " + str(apt))
     teste = cadastro.fetchall()
     cadastro.execute("SELECT * FROM aluguel WHERE bloco = " +
@@ -94,7 +94,7 @@ def cadastro():
             tela.label_6.setText(
                 "Vaga listada para aluguel, retire-a para cadastra-la.")
     else:
-        tela.label_6.setText("Bloco e apartamento ou placa já cadastrado(s).")
+        tela.label_6.setText("Placa ou bloco e apartamento já cadastrado(s).")
 
 
 def aluguel():
@@ -159,7 +159,8 @@ def consulta():
 
     while True:
         consulta = banco.cursor()
-        consulta.execute("SELECT * FROM placas WHERE placa =" + str(cons))
+        consulta.execute(
+            "SELECT * FROM placas WHERE placa =" + "'" + str(cons) + "'")
         placa = consulta.fetchall()
 
         if len(placa) == 0:
